@@ -1,0 +1,62 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    container_name: web
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - relay_network
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    container_name: api
+    restart: unless-stopped
+    ports:
+      - '3002:3002'
+    depends_on:
+      - postgres
+    networks:
+      - relay_network
+
+#  ai:
+#    build:
+#      context: .
+#      dockerfile: apps/ai-service/Dockerfile
+#    container_name: ai
+#    ports:
+#      - '8000:8000'
+#    restart: always
+#    depends_on:
+#      - postgres
+#    networks:
+#      - relay_network
+
+  postgres:
+    image: postgres:18.4
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: 5377249ed6a9a6149761542f03947de6444a4aab001973124adcba5b628dcfee
+      POSTGRES_PASSWORD: sk_gjaLdpQbFWk-JPXmWeRuL
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - relay_network
+
+volumes:
+  postgres:
+    name: relay-db
+
+networks:
+  relay_network:
+    driver: bridge
