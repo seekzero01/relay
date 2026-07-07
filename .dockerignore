@@ -1,8 +1,3 @@
-############################################################
-# Production-ready .dockerignore for a Next.js (Vercel-style) app
-# Keeps Docker builds fast, lean, and free of development files.
-############################################################
-
 # Dependencies (installed inside Docker, never copied)
 node_modules/
 .pnpm-store/
@@ -132,3 +127,8 @@ AGENTS.md
 *.gemini*
 *.openai*
 *.anthropic*
+
+# Docker secrets
+secrets/
+.secrets/
+*.secret

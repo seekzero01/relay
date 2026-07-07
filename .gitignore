@@ -38,4 +38,10 @@ yarn-error.log*
 .DS_Store
 *.pem
 
+# Prisma generated files
 packages/database/generated
+
+# Docker secrets
+secrets/
+.secrets/
+*.secret

@@ -1,4 +1,6 @@
-FROM node:lts-alpine AS pruner
+ARG NODE_VERSION=24.14.1
+
+FROM node:${NODE_VERSION}-alpine AS pruner
 
 WORKDIR /app
 
@@ -6,7 +8,7 @@ RUN npm install -g turbo
 COPY . .
 RUN turbo prune web --docker
 
-FROM node:lts-alpine AS installer
+FROM node:${NODE_VERSION}-alpine AS installer
 
 WORKDIR /app
 COPY --from=pruner /app/out/json .
@@ -15,7 +17,7 @@ COPY --from=pruner /app/turbo.json ./turbo.json
 RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
-FROM node:lts-alpine AS builder
+FROM node:${NODE_VERSION}-alpine AS builder
 ARG TURBO_TEAM
 ENV TURBO_TEAM=$TURBO_TEAM
 ARG TURBO_TOKEN
@@ -26,7 +28,7 @@ COPY --from=pruner /app/out/full .
 RUN npm install -g pnpm
 RUN pnpm run build
 
-FROM node:lts-alpine AS runner
+FROM node:${NODE_VERSION}-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 RUN npm install -g pnpm
