@@ -135,7 +135,7 @@ API services should remain stateless.
 - Modular architecture
 - SOLID principles
 - Automated tests
-- OpenAPI documentation
+- Gemini documentation
 
 ---
 
@@ -343,25 +343,14 @@ POST /chat
 ## Database
 
 - PostgreSQL
+- Prisma
 
 ## AI
 
-- OpenAI API
+- Gemini (via Google AI Studio)
 
 ## DevOps
 
 - Docker Compose
 - GitHub Actions
-
----
-
-# Future Improvements
-
-- Redis
-- BullMQ
-- pgvector
-- Background jobs
-- RBAC
-- API Keys
-- Audit Logs
-- AWS deployment
+- AWS

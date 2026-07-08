@@ -1,39 +1,43 @@
-# CLAUDE.md
+See @README.md for project overview and @package.json for available commands.
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# Additional Context
+- Git workflow: @docs/dev/git-workflow.md
+- API conventions: @docs/design/api-conventions.md
+- Testing guide: @docs/dev/testing.md
 
-## Project Structure
-This is a [Turborepo](https://turborepo.dev/) monorepo containing multiple applications and shared packages:
+## Architecture Overview
+This repository uses a modular service-oriented architecture:
+- **`apps/web`**: Next.js frontend (UI layer only).
+- **`apps/api`**: NestJS backend acting as the primary entry point, handling auth, user management, and document metadata.
+- **`apps/ai-service`**: FastAPI service for document processing (text extraction, chunking) and AI interaction.
+- **`packages/`**: Shared resources including `database` (Prisma), `types`, and `ui` (React components).
 
-- `apps/api`: NestJS API application using Prisma.
-- `apps/web`: Next.js frontend application.
-- `apps/ai-service`: Python-based AI service.
-- `packages/database`: Prisma schema and client generation.
-- `packages/ui`: Shared React component library.
-- `packages/types`: Shared TypeScript types.
-- `packages/typescript-config`: Shared TypeScript configurations.
-- `packages/eslint-config`: Shared ESLint configurations.
+The services communicate via REST APIs, with the NestJS API orchestrating requests to the FastAPI AI service. PostgreSQL is used for data storage, managed via Prisma.
 
-## Development Tasks
+## Common Development Tasks
 
 ### General
 - **Build all**: `turbo build`
 - **Develop all**: `turbo dev`
 
-### Filtering
-You can run commands for specific packages/apps using `--filter`:
-- **Build specific app**: `turbo build --filter=<app-name>`
-- **Develop specific app**: `turbo dev --filter=<app-name>`
+### Package-Specific Commands
+You can run commands for specific apps or packages using `--filter`:
+- **Develop specific app**: `turbo dev --filter=<app-name>` (e.g., `apps/api`, `apps/web`)
+- **Run tests**: `turbo test` (or `npm test` inside an app directory)
 
-### Database (apps/api & packages/database)
-- The database is managed via [Prisma](https://www.prisma.io/).
-- Migrations and schema are located in `packages/database/prisma`.
+### Database (Prisma)
+- The database schema is located in `packages/database/prisma/schema.prisma`.
+- When modifying the schema, follow standard Prisma workflows (migration generation, client regeneration).
 
-### Testing
-- **Run tests**: `turbo test` (check `package.json` in individual apps for specific test scripts).
-- **Run specific API test**: Within `apps/api`, you can use standard Jest commands: `npm test` or `npm run test:e2e`.
-
-## Architecture
-- The monorepo uses `pnpm` workspaces.
-- Shared code is extracted into `packages/`.
-- Frontend (`web`) and Backend (`api`) are separated, with the shared database client package ensuring type safety across the stack.
+## Repository structure
+```text
+apps/
+  ai-service/   # FastAPI AI service
+  api/          # NestJS backend
+  web/          # Next.js frontend
+packages/
+  database/     # Prisma schema & client
+  types/        # Shared TypeScript types
+  ui/           # Shared React components
+docs/           # Detailed architectural and design documentation
+```
