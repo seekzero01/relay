@@ -1,9 +1,13 @@
+@AGENTS.md
+
 See @README.md for project overview and @package.json for available commands.
 
 # Additional Context
 - Git workflow: @docs/dev/git-workflow.md
 - API conventions: @docs/design/api-conventions.md
 - Testing guide: @docs/dev/testing.md
+- Code standards: @docs/design/engineering-principles.md
+- Always use Context7 MCP when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
 
 ## Architecture Overview
 This repository uses a modular service-oriented architecture:

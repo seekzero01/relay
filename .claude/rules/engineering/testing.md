@@ -62,7 +62,7 @@ Test interactions between:
 
 Use real internal components where practical.
 
-Mock external services unless explicitly testing integrations. 
+Mock external services unless explicitly testing integrations.
 
 ---
 
