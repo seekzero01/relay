@@ -1,5 +1,5 @@
 import { index, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { usersTable } from "./users.schema";
+import { usersTable } from "./users.schema.js";
 
 export const projectsTable = pgTable(
     "projects",
@@ -7,7 +7,7 @@ export const projectsTable = pgTable(
         id: uuid('id').primaryKey().defaultRandom(),
         name: text().notNull(),
         description: text(),
-        userId: text()
+        userId: uuid()
             .notNull()
             .references(() => usersTable.id, { onDelete: "cascade" }),
         createdAt: timestamp().notNull().defaultNow(),

@@ -53,6 +53,9 @@ importers:
       '@prisma/client':
         specifier: ^7.8.0
         version: 7.8.0(prisma@7.8.0(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.2))(typescript@5.9.2)
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       axios:
         specifier: ^1.18.1
         version: 1.18.1
@@ -189,11 +192,14 @@ importers:
         version: 17.4.2
       drizzle-orm:
         specifier: 1.0.0-rc.4
-        version: 1.0.0-rc.4(@electric-sql/pglite@0.4.1)(@sinclair/typebox@0.34.49)(@types/pg@8.20.0)(effect@3.20.0)(mysql2@3.15.3)(pg@8.22.0)(postgres@3.4.7)(valibot@1.2.0(typescript@5.9.3))(zod@4.4.3)
+        version: 1.0.0-rc.4(@electric-sql/pglite@0.4.1)(@sinclair/typebox@0.34.49)(@types/pg@8.20.0)(effect@3.20.0)(mysql2@3.15.3)(pg@8.22.0)(postgres@3.4.7)(valibot@1.2.0(typescript@5.9.2))(zod@4.4.3)
       pg:
         specifier: ^8.22.0
         version: 8.22.0
     devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/pg':
         specifier: ^8.20.0
         version: 8.20.0
@@ -8195,7 +8201,7 @@ snapshots:
       get-tsconfig: 4.14.0
       jiti: 2.7.0
 
-  drizzle-orm@1.0.0-rc.4(@electric-sql/pglite@0.4.1)(@sinclair/typebox@0.34.49)(@types/pg@8.20.0)(effect@3.20.0)(mysql2@3.15.3)(pg@8.22.0)(postgres@3.4.7)(valibot@1.2.0(typescript@5.9.3))(zod@4.4.3):
+  drizzle-orm@1.0.0-rc.4(@electric-sql/pglite@0.4.1)(@sinclair/typebox@0.34.49)(@types/pg@8.20.0)(effect@3.20.0)(mysql2@3.15.3)(pg@8.22.0)(postgres@3.4.7)(valibot@1.2.0(typescript@5.9.2))(zod@4.4.3):
     optionalDependencies:
       '@electric-sql/pglite': 0.4.1
       '@sinclair/typebox': 0.34.49
@@ -8204,7 +8210,7 @@ snapshots:
       mysql2: 3.15.3
       pg: 8.22.0
       postgres: 3.4.7
-      valibot: 1.2.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@5.9.2)
       zod: 4.4.3
 
   dunder-proto@1.0.1:
@@ -10991,11 +10997,6 @@ snapshots:
   valibot@1.2.0(typescript@5.9.2):
     optionalDependencies:
       typescript: 5.9.2
-
-  valibot@1.2.0(typescript@5.9.3):
-    optionalDependencies:
-      typescript: 5.9.3
-    optional: true
 
   vary@1.1.2: {}
 
