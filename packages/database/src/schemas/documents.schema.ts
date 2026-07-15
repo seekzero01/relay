@@ -6,7 +6,7 @@ import {
     timestamp,
     uuid,
 } from "drizzle-orm/pg-core";
-import { projectsTable } from "./projects.schema";
+import { projectsTable } from "./projects.schema.js";
 
 export const documentsTable = pgTable(
     "documents",
@@ -16,7 +16,7 @@ export const documentsTable = pgTable(
         filePath: text().notNull(),
         mimeType: text().notNull(),
         size: integer().notNull(),
-        projectId: text()
+        projectId: uuid()
             .notNull()
             .references(() => projectsTable.id, { onDelete: "cascade" }),
         createdAt: timestamp().notNull().defaultNow(),
