@@ -1,0 +1,48 @@
+version: '3'
+
+tasks:
+  generate:
+    desc: Generate Drizzle SQL migrations (writes to ./drizzle, commit these files)
+    dir: packages/database
+    cmds:
+      - pnpm db:generate
+
+  migrate:
+    desc: Apply pending migrations via one-shot migrate service
+    cmds:
+      - docker compose -f docker/docker-compose.yaml run --rm migrate
+
+  up:
+    desc: Start the full stack (assumes migrations already applied)
+    cmds:
+      - docker compose -f docker/docker-compose.yaml up -d
+
+  down:
+    desc: Stop the stack, preserving volumes
+    cmds:
+      - docker compose -f docker/docker-compose.yaml down
+
+  migrate-and-up:
+    desc: Full safe boot sequence — generate check, migrate, then up
+    cmds:
+      - task: migrate
+      - task: up
+
+  reset:
+    desc: "DESTRUCTIVE: full local reset — drops volumes, removes orphans, prunes"
+    prompt: This will delete all local DB data. Continue?
+    cmds:
+      - docker compose -f docker/docker-compose.yaml down -v --remove-orphans
+      - docker volume prune -f
+
+  studio:
+    desc: Launch Drizzle Studio proxied through Docker (host must be localhost, never 0.0.0.0)
+    cmds:
+      - docker compose -f docker/docker-compose.yaml up -d drizzle-studio
+
+  logs:
+    desc: Tail logs for a given service (task docker:logs -- SERVICE=api)
+    cmds:
+      - docker compose -f docker/docker-compose.yaml logs -f {{.SERVICE}}
+    vars:
+      SERVICE: '{{.SERVICE | default "api"}}'
