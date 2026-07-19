@@ -8,6 +8,20 @@
       "when": 1784390331355,
       "tag": "0000_initialize_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784467572408,
+      "tag": "0001_same_night_nurse",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784469839407,
+      "tag": "0002_premium_sleepwalker",
+      "breakpoints": true
     }
   ]
 }

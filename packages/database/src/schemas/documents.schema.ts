@@ -8,7 +8,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { projectsTable } from "./projects.schema.js";
 
-export const documentsTable = pgTable(
+export const documents = pgTable(
     "documents",
     {
         id: uuid('id').primaryKey().defaultRandom(),
