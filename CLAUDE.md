@@ -3,7 +3,7 @@
 See @README.md for project overview and @package.json for available commands.
 
 # Additional Context
-- Git workflow: @docs/dev/git-workflow.md
+- Git workflow: @docs/workflows/git-workflow.md
 - API conventions: @docs/design/api-conventions.md
 - Testing guide: @docs/dev/testing.md
 - Code standards: @docs/design/engineering-principles.md
