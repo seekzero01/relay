@@ -12,6 +12,11 @@ tasks:
     cmds:
       - docker compose -f docker/docker-compose.yaml run --rm migrate
 
+  build:
+    desc: Build the containers (by default with no cache)
+    cmds:
+      - docker compose -f docker/docker-compose.yaml build --no-cache
+
   up:
     desc: Start the full stack (assumes migrations already applied)
     cmds:
@@ -40,9 +45,9 @@ tasks:
     cmds:
       - docker compose -f docker/docker-compose.yaml up -d drizzle-studio
 
-  logs:
-    desc: Tail logs for a given service (task docker:logs -- SERVICE=api)
+  logs:*:
+    desc: Tail logs for a given service
     cmds:
       - docker compose -f docker/docker-compose.yaml logs -f {{.SERVICE}}
     vars:
-      SERVICE: '{{.SERVICE | default "api"}}'
+      SERVICE: '{{index .MATCH 0}}'
