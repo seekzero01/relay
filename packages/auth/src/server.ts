@@ -7,6 +7,26 @@ export const auth = betterAuth({
         provider: "pg",
     }),
 
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            prompt: "select_account consent",
+            accessType: "offline",
+        },
+        github: {
+            clientId: process.env.GITHUB_CLIENT_ID as string,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+        },
+        microsoft: {
+            clientId: process.env.MICROSOFT_CLIENT_ID as string,
+            clientSecret: process.env.MICROSOFT_CLIENT_SECRET as string,
+            tenantId: 'common',
+            authority: "https://login.microsoftonline.com",
+            prompt: "select_account",
+        },
+    },
+
     baseURL: process.env.BETTER_AUTH_URL,        // e.g. https://api.example.com
     secret: process.env.BETTER_AUTH_SECRET,
 
