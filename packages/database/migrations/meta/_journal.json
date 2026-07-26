@@ -22,6 +22,20 @@
       "when": 1784469839407,
       "tag": "0002_premium_sleepwalker",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1785074962011,
+      "tag": "0003_amazing_wolfpack",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1785077846681,
+      "tag": "0004_low_gateway",
+      "breakpoints": true
     }
   ]
 }

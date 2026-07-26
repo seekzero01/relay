@@ -13,5 +13,5 @@ export const verification = pgTable(
             .$onUpdate(() => /* @__PURE__ */ new Date())
             .notNull(),
     },
-    (table) => [index("verification_identifier_idx").on(table.identifier)],
+    (table) => [index("verifications_identifier_idx").on(table.identifier)],
 );

@@ -1,10 +1,12 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {db} from "@repo/database";
+import * as schema from "@repo/database"
 
 export const auth = betterAuth({
     database: drizzleAdapter(db, {
         provider: "pg",
+        schema,
     }),
 
     socialProviders: {
@@ -34,8 +36,7 @@ export const auth = betterAuth({
 
     advanced: {
         crossSubDomainCookies: {
-            enabled: true,
-            domain: process.env.COOKIE_DOMAIN,        // ".example.com" in prod, ".localtest.me" in dev — env-driven, never hardcoded
+            enabled: true,   // ".example.com" in prod, ".localtest.me" in dev — env-driven, never hardcoded
         },
         useSecureCookies: process.env.NODE_ENV === "production",
         database: {
