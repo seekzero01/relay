@@ -1,9 +1,10 @@
-import { betterAuth } from "better-auth";
+import {Auth, betterAuth} from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {db} from "@repo/database";
 import * as schema from "@repo/database";
+import {emailOTP} from "better-auth/plugins";
 
-export const auth = betterAuth({
+export const auth: Auth<object> = betterAuth({
     database: drizzleAdapter(db, {
         provider: "pg",
         schema, 
@@ -58,4 +59,18 @@ export const auth = betterAuth({
             maxAge: 60,
         },
     },
+
+    plugins: [
+        emailOTP({
+            async sendVerificationOTP({ email, otp, type }) {
+                if (type === "sign-in") {
+                    // Send the OTP for sign in
+                } else if (type === "email-verification") {
+                    // Send the OTP for email verification
+                } else {
+                    // Send the OTP for password reset
+                }
+            },
+        })
+    ]
 });

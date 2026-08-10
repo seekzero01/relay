@@ -150,6 +150,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@thesvg/react':
+        specifier: ^3.2.15
+        version: 3.2.15(react@19.2.4)
       next:
         specifier: 16.2.10
         version: 16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -2308,6 +2311,12 @@ packages:
         optional: true
       qs:
         optional: true
+
+  '@thesvg/react@3.2.15':
+    resolution: {integrity: sha512-hW3QGW4z6KZCkTRlBtzx7UgSy6zEecEbdBIh5SHlx4YEyE1i6cDnPkk3KpcDIRtRn6W7I9tqxPTNLCurfb5lNQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=18'
 
   '@tokenizer/inflate@0.4.1':
     resolution: {integrity: sha512-2mAv+8pkG6GIZiF1kNg1jAjh27IDxEPKwdGul3snfztFerfPGI1LjDezZp3i7BElXompqEtPmoPx6c2wgtWsOA==}
@@ -7629,6 +7638,10 @@ snapshots:
     optionalDependencies:
       express: 5.2.1
       qs: 6.15.3
+
+  '@thesvg/react@3.2.15(react@19.2.4)':
+    dependencies:
+      react: 19.2.4
 
   '@tokenizer/inflate@0.4.1':
     dependencies:
