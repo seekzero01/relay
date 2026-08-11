@@ -1,10 +1,10 @@
-import {Auth, betterAuth} from "better-auth";
+import {betterAuth} from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {db} from "@repo/database";
 import * as schema from "@repo/database";
 import {emailOTP} from "better-auth/plugins";
 
-export const auth: Auth<object> = betterAuth({
+export const auth = betterAuth({
     database: drizzleAdapter(db, {
         provider: "pg",
         schema, 
@@ -63,14 +63,15 @@ export const auth: Auth<object> = betterAuth({
     plugins: [
         emailOTP({
             async sendVerificationOTP({ email, otp, type }) {
+                // TODO: wire a real email transport (Resend/SES/Postmark/etc).
+                // No provider chosen yet per project state — this is a stub, not a
+                // silent no-op: it will currently only log, so OTP signup will not
+                // work end-to-end until this is implemented.
                 if (type === "sign-in") {
-                    // Send the OTP for sign in
-                } else if (type === "email-verification") {
-                    // Send the OTP for email verification
-                } else {
-                    // Send the OTP for password reset
+                    console.log(`[emailOTP] sign-in code for ${email}: ${otp}`);
                 }
             },
+            expiresIn: 600,
         })
     ]
 });
