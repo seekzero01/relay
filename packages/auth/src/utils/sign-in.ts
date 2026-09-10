@@ -1,5 +1,5 @@
-import { signIn } from "../instances/client.js";
 import type { SocialProviderId } from "../providers/index.js";
+import {signIn} from "../instances/client.js";
 
 export interface SignInWithOAuthParams {
     provider: SocialProviderId;
